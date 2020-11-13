@@ -12,6 +12,9 @@ client.on("ready", () => {
       console.log(`${channel.name} ${channel.type} ${channel.id}`);
     });
   });
+
+  let generalChannel = client.channels.cache.get("757781007784083551");
+  generalChannel.send("Hello Mudbloods");
 });
 
 client.login(process.env.BOT_TOKEN);
