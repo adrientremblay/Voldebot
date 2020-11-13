@@ -27,10 +27,28 @@ client.on("message", (receivedMessage) => {
   }
 
   if (receivedMessage.content.startsWith(COMMAND_IDENTIFIER)) {
-    receivedMessage.channel.send(
-      "shut up " + receivedMessage.author.toString()
-    );
+    processCommand(receivedMessage);
   }
 });
+
+let processCommand = (receivedMessage) => {
+  let commandContent = receivedMessage.content.substr(
+    COMMAND_IDENTIFIER.length
+  );
+  let commandWords = commandContent.split(" ");
+  let primaryCommand = commandWords[0];
+  let args = commandWords.slice(1);
+
+  switch (primaryCommand) {
+    case "silence":
+      silence(receivedMessage, args);
+      break;
+  }
+};
+
+let silence = (receivedMessage, args) => {
+  if (!args[0]) return;
+  receivedMessage.channel.send("Shut up " + args[0]);
+};
 
 client.login(process.env.BOT_TOKEN);
