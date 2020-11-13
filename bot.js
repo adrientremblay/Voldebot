@@ -14,7 +14,10 @@ client.on("ready", () => {
   });
 
   let generalChannel = client.channels.cache.get("757781007784083551");
-  generalChannel.send("Hello Mudbloods");
+  const avada_kedavra = new Discord.MessageAttachment(
+    "https://thumbs.gfycat.com/AcademicIllustriousGallowaycow-max-1mb.gif"
+  );
+  generalChannel.send(avada_kedavra);
 });
 
 client.login(process.env.BOT_TOKEN);
