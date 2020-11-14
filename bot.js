@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const { sandybrown } = require("color-name");
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const COMMAND_IDENTIFIER = "voldemort ";
@@ -43,6 +44,9 @@ let processCommand = (receivedMessage) => {
     case "kill":
       kill(receivedMessage, args);
       break;
+    case "say":
+      say(receivedMessage, args);
+      break;
   }
 };
 
@@ -57,6 +61,16 @@ let kill = (receivedMessage, args) => {
   receivedMessage.channel.send("Your time has come " + args[0] + "...");
   receivedMessage.channel.send("AVADA KEDAVRA !");
   receivedMessage.channel.send(gifs.avada_kedavra);
+};
+
+let say = (receivedMessage, args) => {
+  if (!args[0]) return;
+  receivedMessage.channel.send(
+    "*a snakelike slytherin whispher fills your ears...*"
+  );
+  receivedMessage.channel.send("*it says:*");
+  receivedMessage.channel.send('"' + args.join(" ") + '"');
+  receivedMessage.channel.send(gifs.happy);
 };
 
 client.login(process.env.BOT_TOKEN);

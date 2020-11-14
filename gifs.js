@@ -7,4 +7,7 @@ module.exports = {
   angry: new Discord.MessageAttachment(
     "https://media.giphy.com/media/IWfm4Mcfjw4Yo/giphy.gif"
   ),
+  happy: new Discord.MessageAttachment(
+    "https://media.giphy.com/media/LLxwPAjfpLak8/giphy.gif"
+  ),
 };
