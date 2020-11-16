@@ -92,10 +92,20 @@ let stopBreakdance = (receivedMessage, args) => {
 
 let breakdance = (receivedMessage, args) => {
   // initial messages
-  receivedMessage.channel.send("Lets get this party started...");
-  receivedMessage.channel.send(
-    "@everyone JOIN GENERAL VOICE AND MOVE YOUR FEET FOR THE DARK LORD!"
-  );
+  if (args.length != 0) {
+    if (!Number.isInteger(parseInt(args[0]))) return;
+    receivedMessage.channel.send(
+      `@everyone REMINDER: Meeting in ${args[0]} minutes!`
+    );
+    receivedMessage.channel.send(
+      "Join the epic harry potter dubstep dance party in VOICE GENERAL while waiting!"
+    );
+  } else {
+    receivedMessage.channel.send("Lets get this party started...");
+    receivedMessage.channel.send(
+      "@everyone JOIN GENERAL VOICE AND MOVE YOUR FEET FOR THE DARK LORD!"
+    );
+  }
   receivedMessage.channel.send(gifs.dance);
   // finding general voice channels and playing dank music
   let videoURL = "https://www.youtube.com/watch?v=rxau0SgBI-s";
