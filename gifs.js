@@ -10,4 +10,7 @@ module.exports = {
   happy: new Discord.MessageAttachment(
     "https://media.giphy.com/media/LLxwPAjfpLak8/giphy.gif"
   ),
+  dance: new Discord.MessageAttachment(
+    "https://media1.tenor.com/images/40f52a34405d694057755a86898956cc/tenor.gif?itemid=8518019"
+  ),
 };

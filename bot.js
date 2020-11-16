@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const { sandybrown } = require("color-name");
 const Discord = require("discord.js");
+const ytdl = require("ytdl-core");
 const client = new Discord.Client();
 const COMMAND_IDENTIFIER = "voldemort ";
 
@@ -11,11 +12,11 @@ client.on("ready", () => {
   console.log("Connected as: " + client.user.tag);
   client.user.setActivity("The Dark Arts", { type: "STUDYING" });
 
-  //   client.guilds.cache.forEach((guild) => {
-  //     guild.channels.cache.forEach((channel) => {
-  //       console.log(`${channel.name} ${channel.type} ${channel.id}`);
-  //     });
+  // client.guilds.cache.forEach((guild) => {
+  //   guild.channels.cache.forEach((channel) => {
+  //     console.log(`${channel.name} ${channel.type} ${channel.id}`);
   //   });
+  // });
   //   let generalChannel = client.channels.cache.get("757781007784083551");
 });
 
@@ -47,6 +48,9 @@ let processCommand = (receivedMessage) => {
     case "say":
       say(receivedMessage, args);
       break;
+    case "breakdance":
+      breakdance(receivedMessage, args);
+      break;
   }
 };
 
@@ -71,6 +75,32 @@ let say = (receivedMessage, args) => {
   receivedMessage.channel.send("*it says:*");
   receivedMessage.channel.send('"' + args.join(" ") + '"');
   receivedMessage.channel.send(gifs.happy);
+};
+
+let breakdance = (receivedMessage, args) => {
+  // initial messages
+  receivedMessage.channel.send("Lets get this party started...");
+  receivedMessage.channel.send("@everyone move your feet for the DARK LORD!");
+  receivedMessage.channel.send(gifs.dance);
+  // finding general voice channels and playing dank music
+  let videoURL = "https://www.youtube.com/watch?v=rxau0SgBI-s";
+  client.guilds.cache.forEach((guild) => {
+    guild.channels.cache
+      .filter((channel) => channel.name == "General" && channel.type == "voice")
+      .forEach((channel) => {
+        channel
+          .join()
+          .then((connection) => {
+            // playing dank music
+            connection.play(
+              ytdl(videoURL, {
+                quality: "highestaudio",
+              })
+            );
+          })
+          .catch((err) => console.log(err));
+      });
+  });
 };
 
 client.login(process.env.BOT_TOKEN);
