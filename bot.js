@@ -51,6 +51,9 @@ let processCommand = (receivedMessage) => {
     case "breakdance":
       breakdance(receivedMessage, args);
       break;
+    case "banish":
+      stopBreakdance(receivedMessage, args);
+      break;
   }
 };
 
@@ -75,6 +78,16 @@ let say = (receivedMessage, args) => {
   receivedMessage.channel.send("*it says:*");
   receivedMessage.channel.send('"' + args.join(" ") + '"');
   receivedMessage.channel.send(gifs.happy);
+};
+
+let stopBreakdance = (receivedMessage, args) => {
+  client.guilds.cache.forEach((guild) => {
+    guild.channels.cache
+      .filter((channel) => channel.name == "General" && channel.type == "voice")
+      .forEach((channel) => {
+        channel.leave();
+      });
+  });
 };
 
 let breakdance = (receivedMessage, args) => {
