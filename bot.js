@@ -80,7 +80,9 @@ let say = (receivedMessage, args) => {
 let breakdance = (receivedMessage, args) => {
   // initial messages
   receivedMessage.channel.send("Lets get this party started...");
-  receivedMessage.channel.send("@everyone move your feet for the DARK LORD!");
+  receivedMessage.channel.send(
+    "@everyone JOIN GENERAL VOICE AND MOVE YOUR FEET FOR THE DARK LORD!"
+  );
   receivedMessage.channel.send(gifs.dance);
   // finding general voice channels and playing dank music
   let videoURL = "https://www.youtube.com/watch?v=rxau0SgBI-s";
