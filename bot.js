@@ -116,11 +116,7 @@ let breakdance = (receivedMessage, args) => {
         .join()
         .then((connection) => {
           // playing dank music
-          connection.play(
-            ytdl(videoURL, {
-              quality: "highestaudio",
-            })
-          );
+          connection.play("./song.mp3");
         })
         .catch((err) => console.log(err));
     });
