@@ -109,23 +109,21 @@ let breakdance = (receivedMessage, args) => {
   receivedMessage.channel.send(gifs.dance);
   // finding general voice channels and playing dank music
   let videoURL = "https://www.youtube.com/watch?v=rxau0SgBI-s";
-  client.guilds.cache.forEach((guild) => {
-    guild.channels.cache
-      .filter((channel) => channel.name == "General" && channel.type == "voice")
-      .forEach((channel) => {
-        channel
-          .join()
-          .then((connection) => {
-            // playing dank music
-            connection.play(
-              ytdl(videoURL, {
-                quality: "highestaudio",
-              })
-            );
-          })
-          .catch((err) => console.log(err));
-      });
-  });
+  receivedMessage.guild.channels.cache
+    .filter((channel) => channel.name == "General" && channel.type == "voice")
+    .forEach((channel) => {
+      channel
+        .join()
+        .then((connection) => {
+          // playing dank music
+          connection.play(
+            ytdl(videoURL, {
+              quality: "highestaudio",
+            })
+          );
+        })
+        .catch((err) => console.log(err));
+    });
 };
 
 client.login(process.env.BOT_TOKEN);
