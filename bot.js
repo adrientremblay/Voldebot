@@ -108,7 +108,6 @@ let breakdance = (receivedMessage, args) => {
   }
   receivedMessage.channel.send(gifs.dance);
   // finding general voice channels and playing dank music
-  let videoURL = "https://www.youtube.com/watch?v=rxau0SgBI-s";
   receivedMessage.guild.channels.cache
     .filter((channel) => channel.name == "General" && channel.type == "voice")
     .forEach((channel) => {
